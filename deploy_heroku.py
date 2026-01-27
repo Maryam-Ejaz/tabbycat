@@ -209,17 +209,17 @@ redis_provisioned = False
 redis_status_command = make_heroku_command(["redis:info"])
 print_yellow("Waiting for Heroku Redis to provision (may take up to 5 minutes)...")
 
-while not redis_provisioned:
-    time.sleep(30)
-    redis_output = subprocess.check_output(redis_status_command).decode().split("\n")
-    for status in redis_output:
-        match = re.match(r"^Status:\s+available", status)
-        if match:
-            redis_provisioned = True
-            break
+# while not redis_provisioned:
+#     time.sleep(30)
+#     redis_output = subprocess.check_output(redis_status_command).decode().split("\n")
+#     for status in redis_output:
+#         match = re.match(r"^Status:\s+available", status)
+#         if match:
+#             redis_provisioned = True
+#             break
 
 
-print("Heroku Redis is available, starting deployment")
+# print("Heroku Redis is available, starting deployment")
 
 # Push source code to Heroku
 push_spec = get_git_push_spec()
